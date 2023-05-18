@@ -952,6 +952,7 @@ public class ImpExcelBC extends javax.swing.JFrame {
                         try {
                             String dato = valores.get(datoRef1);
                             dato = dato.replaceAll("null", "");
+                            dato = dato.replaceAll("NULL", "");
                             if (dato != null && dato.compareTo("") != 0) {
                                 t.setValueAt(dato, i, t.getSelectedColumn());
                                 if (valores.get(datoRef1) != null && valores.get(datoRef1).compareTo("") != 0) {
@@ -965,9 +966,8 @@ public class ImpExcelBC extends javax.swing.JFrame {
                 }
             } else {
                 if (!datoRef1.equals("")) {
+                    String dato = valores.get(datoRef1);
                     try {
-                        String dato = valores.get(datoRef1);
-                        dato = dato.replaceAll("null", "");
                         if (dato != null && dato.compareTo("") != 0) {
                             t.setValueAt(dato, i, t.getSelectedColumn());
                             if (valores.get(datoRef1) != null && valores.get(datoRef1).compareTo("") != 0) {
@@ -975,7 +975,6 @@ public class ImpExcelBC extends javax.swing.JFrame {
                             }
                         }
                     } catch (Exception e) {
-                        t.setValueAt("", i, t.getSelectedColumn());
                     }
                 }
             }
