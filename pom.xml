@@ -68,4 +68,5 @@
             <version>RELEASE170</version>
         </dependency>
     </dependencies>
+    <name>PONS-DC</name>
 </project>

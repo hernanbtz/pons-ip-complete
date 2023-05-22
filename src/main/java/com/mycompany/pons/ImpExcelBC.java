@@ -104,6 +104,7 @@ public class ImpExcelBC extends javax.swing.JFrame {
         btn_siguientevacio = new javax.swing.JButton();
         txt_buscador = new javax.swing.JTextField();
         btn_buscar = new javax.swing.JButton();
+        btn_rellenarDC = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1280, 720));
@@ -429,6 +430,15 @@ public class ImpExcelBC extends javax.swing.JFrame {
         });
         jPanel1.add(btn_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 70, -1, -1));
 
+        btn_rellenarDC.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btn_rellenarDC.setText("RELLENAR CON DOMICILIO CONTACTO");
+        btn_rellenarDC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_rellenarDCActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_rellenarDC, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 310, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
 
         pack();
@@ -606,6 +616,10 @@ public class ImpExcelBC extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_buscarActionPerformed
 
+    private void btn_rellenarDCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_rellenarDCActionPerformed
+        rellenarDC();
+    }//GEN-LAST:event_btn_rellenarDCActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -655,7 +669,7 @@ public class ImpExcelBC extends javax.swing.JFrame {
             for (int i = columna; i < t.getColumnCount(); i++) {
                 for (int j = fila; j < t.getRowCount(); j++) {
                     String dato = String.valueOf(t.getValueAt(j, i));
-                    if (dato.contains(datoAbuscar)) {
+                    if (dato.equalsIgnoreCase(datoAbuscar)) {
                         t.setRowSelectionInterval(j, j);
                         JViewport viewport = (JViewport) t.getParent();
                         Rectangle rect = t.getCellRect(j, i, true);
@@ -895,51 +909,6 @@ public class ImpExcelBC extends javax.swing.JFrame {
         }
     }
 
-    /*private int rellenar(JTable t, JComboBox cb) {
-        int nCambios = 0;
-        int fila = t.getRowCount();
-        guardarCambiosdeDeshacer(t);
-        for (int i = 0; i < fila; i++) {
-            String datoRef1 = String.valueOf(t.getValueAt(i, sacarColumnaRef1(t, cb)));
-            if (rbAPI.isSelected()) {
-                if (String.valueOf(t.getValueAt(i, t.getSelectedColumn())).equals("")) {
-
-                    if (!datoRef1.equals("")) {
-                        String dato = valores.get(datoRef1);
-                        try {
-                            dato = dato.replaceAll("null", "");
-                            dato = dato.replaceAll("NULL", "");
-                            if (dato != null && dato.compareTo("") != 0) {
-                                t.setValueAt(dato, i, t.getSelectedColumn());
-                                if (valores.get(datoRef1) != null && valores.get(datoRef1).compareTo("") != 0) {
-                                    nCambios++;
-                                }
-                            }
-                        } catch (Exception e) {
-                            t.setValueAt("", i, t.getSelectedColumn());
-                        }
-                    }
-                }
-            } else {
-                if (!datoRef1.equals("")) {
-                    String dato = valores.get(datoRef1);
-                    try {
-                        dato = dato.replaceAll("null", "");
-                        dato = dato.replaceAll("NULL", "");
-                        if (dato != null && dato.compareTo("") != 0) {
-                            t.setValueAt(dato, i, t.getSelectedColumn());
-                            if (valores.get(datoRef1) != null && valores.get(datoRef1).compareTo("") != 0) {
-                                nCambios++;
-                            }
-                        }
-                    } catch (Exception e) {
-                        t.setValueAt("", i, t.getSelectedColumn());
-                    }
-                }
-            }
-        }
-        return nCambios;
-    }*/
     private int rellenar(JTable t, JComboBox cb) {
         int nCambios = 0;
         int fila = t.getRowCount();
@@ -980,6 +949,146 @@ public class ImpExcelBC extends javax.swing.JFrame {
             }
         }
         return nCambios;
+    }
+
+    /*private int rellenarDC(JTable t, JComboBox cb) {
+        int nCambios = 0;
+        int fila = t.getRowCount();
+        int contadorSIGES = 0;
+        int contadorAPIGES = 0;
+        guardarCambiosdeDeshacer(t);
+        String datoSF = "0010900001AIJul";
+        for (int i = 0; i < fila; i++) {
+            String datoRef1 = String.valueOf(t.getValueAt(i, sacarColumnaRef1(t, cb)));
+            if (datoRef1.equalsIgnoreCase(datoSF)) {
+                contadorAPIGES++;
+            }
+        }
+
+        for (Map.Entry<String, String> entry : valores.entrySet()) {
+            if (entry.getKey().equalsIgnoreCase(datoSF)) {
+                contadorSIGES++;
+            }
+        }
+        if (contadorAPIGES >= contadorSIGES) {
+            //Quitar fila
+            DefaultTableModel model = (DefaultTableModel) tb_importSF.getModel();
+            int cont = contadorAPIGES;
+            for (int i = 0; i < fila; i++) {
+                if (cont != 0) {
+                    String sObject = String.valueOf(t.getValueAt(i, sacarColumnaRef1(t, cb)));
+                    if (sObject.equalsIgnoreCase(datoSF)) {
+                        model.removeRow(i);
+                        i--;
+                        cont--;
+                    }
+                }
+            }
+            int diferencia = contadorAPIGES - contadorSIGES;
+            if (diferencia >= 0) {
+                Object[] object = new Object[tb_importSF.getColumnCount()];
+                for (int i = 0; i < tb_importAPI.getRowCount(); i++) {
+                    String ns = String.valueOf(tb_importAPI.getValueAt(i, sacarColumnaRef(tb_importAPI, cb_api)));
+                    if (ns.equalsIgnoreCase(datoSF)) {
+                        for (int j = 0; j < tb_importAPI.getColumnCount(); j++) {
+                            String sObject = String.valueOf(tb_importAPI.getValueAt(i, j));
+                            sObject = sObject.replaceAll("null", "");
+                            object[j] = sObject;
+                        }
+                        diferencia--;
+                        model.addRow(object);
+                    }
+                }
+            }
+        } else if (contadorAPIGES < contadorSIGES) {
+            //Añadir fiña
+            DefaultTableModel model = (DefaultTableModel) tb_importSF.getModel();
+            int cont = contadorAPIGES;
+            for (int i = 0; i < fila; i++) {
+                if (cont != 0) {
+                    String sObject = String.valueOf(t.getValueAt(i, sacarColumnaRef1(t, cb)));
+                    if (sObject.equalsIgnoreCase(datoSF)) {
+                        model.removeRow(i);
+                        i--;
+                        cont--;
+                    }
+                }
+            }
+
+            int diferencia = contadorAPIGES - contadorSIGES;
+            if (diferencia != 0) {
+                Object[] object = new Object[tb_importSF.getColumnCount()];
+                for (int i = 0; i < tb_importAPI.getRowCount(); i++) {
+                    String ns = String.valueOf(tb_importAPI.getValueAt(i, sacarColumnaRef(tb_importAPI, cb_api)));
+                    if (ns.equalsIgnoreCase(datoSF)) {
+                        for (int j = 0; j < tb_importAPI.getColumnCount(); j++) {
+                            String sObject = String.valueOf(tb_importAPI.getValueAt(i, j));
+                            sObject = sObject.replaceAll("null", "");
+                            object[j] = sObject;
+                        }
+                        diferencia++;
+                        model.addRow(object);
+                    }
+                }
+            }
+        }
+        return nCambios;
+    }*/
+    private void rellenarDC(JTable t, JComboBox cb) {
+        ArrayList<ArrayList> listaArellenar = new ArrayList<>();
+        ArrayList<ArrayList> listaAPIGES = new ArrayList<>();
+        ArrayList<String> filaAPIGES;
+        ArrayList<ArrayList> listaSIGES = new ArrayList<>();
+        ArrayList<String> filaSiges;
+        for (int i = 0; i < tb_importAPI.getRowCount(); i++) {
+            filaSiges = new ArrayList<>();
+            for (int j = 0; j < tb_importAPI.getColumnCount(); j++) {
+                String valoresFilaObject = String.valueOf(tb_importAPI.getValueAt(i, j));
+                filaSiges.add(valoresFilaObject);
+            }
+            listaSIGES.add(filaSiges);
+        }
+        System.out.println("Lista de SIGES rellenada");
+
+        for (int i = 0; i < tb_importSF.getRowCount(); i++) {
+            filaAPIGES = new ArrayList<>();
+            for (int j = 0; j < tb_importSF.getColumnCount(); j++) {
+                String valoresFilaObject = String.valueOf(tb_importSF.getValueAt(i, j));
+                filaAPIGES.add(valoresFilaObject);
+            }
+            listaAPIGES.add(filaAPIGES);
+        }
+
+        System.out.println("Lista de APIGES rellenada");
+
+        System.out.println("Mezclando... Esto puede tardar entre 4 y 6 minutos");
+        int cont = 0;
+        for (int i = 0; i < listaAPIGES.size(); i++) {
+            String claveAPI = String.valueOf(listaAPIGES.get(i).get(sacarColumnaRef1(t, cb)));
+            for (int j = 0; j < listaSIGES.size(); j++) {
+                String claveSIG = String.valueOf(listaSIGES.get(j).get(sacarColumnaRef1(t, cb)));
+                if (claveAPI.equalsIgnoreCase(claveSIG)) {
+                    listaSIGES.get(j).set(3, listaAPIGES.get(i).get(3));
+                    listaArellenar.add(listaSIGES.get(j));
+                    listaSIGES.remove(j);
+                    j--;
+                }
+            }
+            cont++;
+            System.out.println("Fila " + cont + " de " + listaAPIGES.size());
+        }
+        System.out.println("Borrando filas y añadiendolas de nuevo");
+        DefaultTableModel model = (DefaultTableModel) tb_importSF.getModel();
+        model.setRowCount(0);
+        for (int i = 0; i < listaArellenar.size(); i++) {
+            Object[] object = new Object[tb_importSF.getColumnCount()];
+            for (int j = 0; j < tb_importSF.getColumnCount(); j++) {
+                String valoresFilaObject = String.valueOf(listaArellenar.get(i).get(j));
+                valoresFilaObject = valoresFilaObject.replaceAll("null", "");
+                object[j] = valoresFilaObject;
+            }
+            model.addRow(object);
+        }
     }
 
     private void rellenarCombos() {
@@ -1140,12 +1249,11 @@ public class ImpExcelBC extends javax.swing.JFrame {
                     if (indiceFila > filaAescribir) {
                         model.addRow(listaColumna);
                     }
-
                 }
                 isImport = true;
                 resizeColumnWidth(t);
                 t.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-                borrarColumnasinit(t);
+                //borrarColumnasinit(t);
                 rellenarCombos();
 
             } catch (Exception ex) {
@@ -1283,6 +1391,18 @@ public class ImpExcelBC extends javax.swing.JFrame {
         }
     }
 
+    private void rellenarDC() {
+        if (rbAPI.isSelected()) {
+            tb_importAPI.setVisible(true);
+            rellenarDC(tb_importSF, cb_sf);
+            tb_importAPI.setVisible(false);
+            JOptionPane.showMessageDialog(this, "Se ha realizado con exitos.");
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Solo funciona con con la tabla de APIGES.\nPor favor, seleccione APIGES");
+        }
+    }
+
     private void iniciarVista() {
         vista = -1;
         btn_rellenar.setEnabled(false);
@@ -1325,6 +1445,7 @@ public class ImpExcelBC extends javax.swing.JFrame {
     private javax.swing.JButton btn_mostrar;
     private javax.swing.JButton btn_ocultar;
     private javax.swing.JButton btn_rellenar;
+    private javax.swing.JButton btn_rellenarDC;
     private javax.swing.JButton btn_siguientemodificado;
     private javax.swing.JButton btn_siguientevacio;
     private javax.swing.ButtonGroup buttonGroup1;
