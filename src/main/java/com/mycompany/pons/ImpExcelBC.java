@@ -15,7 +15,6 @@ import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -35,8 +34,6 @@ public class ImpExcelBC extends javax.swing.JFrame {
     private int vista = 0;
     private int indiceFila = 0;
     private String columnaDatos = "";
-    //private ArrayList<String> fila;
-    //private ArrayList<ArrayList> conjuntoFilas;
     private ArrayList<String> prueba;
     private HashMap<String, String> valores;
     private boolean isImport = false;
@@ -107,14 +104,21 @@ public class ImpExcelBC extends javax.swing.JFrame {
         btn_rellenarDC = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
-        setResizable(false);
         setSize(new java.awt.Dimension(1280, 720));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                formComponentResized(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel1.setMaximumSize(new java.awt.Dimension(1280, 720));
         jPanel1.setMinimumSize(new java.awt.Dimension(1280, 720));
         jPanel1.setPreferredSize(new java.awt.Dimension(1280, 720));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -431,7 +435,7 @@ public class ImpExcelBC extends javax.swing.JFrame {
         jPanel1.add(btn_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 70, -1, -1));
 
         btn_rellenarDC.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btn_rellenarDC.setText("RELLENAR CON DOMICILIO CONTACTO");
+        btn_rellenarDC.setText("SUSTITUIR DOMICILIOS CONTACTOS");
         btn_rellenarDC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_rellenarDCActionPerformed(evt);
@@ -439,19 +443,163 @@ public class ImpExcelBC extends javax.swing.JFrame {
         });
         jPanel1.add(btn_rellenarDC, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 310, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_importBCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_importBCActionPerformed
-        if (importarExcel(tb_importBC)) {
-            rbBC.setEnabled(true);
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+
+    }//GEN-LAST:event_formMouseClicked
+
+    private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
+
+    }//GEN-LAST:event_formComponentResized
+
+    private void btn_rellenarDCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_rellenarDCActionPerformed
+        rellenarDC();
+    }//GEN-LAST:event_btn_rellenarDCActionPerformed
+
+    private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
+        if (tb_importAPI.isVisible()) {
+            buscador(tb_importAPI.getSelectedColumn(), tb_importAPI.getSelectedRow() + 1, tb_importAPI);
+        } else if (tb_importBC.isVisible()) {
+            buscador(tb_importBC.getSelectedColumn(), tb_importBC.getSelectedRow() + 1, tb_importBC);
+        } else if (tb_importSF.isVisible()) {
+            buscador(tb_importSF.getSelectedColumn(), tb_importSF.getSelectedRow() + 1, tb_importSF);
+        }
+    }//GEN-LAST:event_btn_buscarActionPerformed
+
+    private void btn_siguientevacioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_siguientevacioActionPerformed
+        siguienteVacia(tb_importSF.getSelectedRow() + 1);
+    }//GEN-LAST:event_btn_siguientevacioActionPerformed
+
+    private void btn_mostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_mostrarActionPerformed
+        if (tb_importSF.isVisible()) {
+            mostrarCeldas(tb_importSF);
+        } else if (tb_importAPI.isVisible()) {
+            mostrarCeldas(tb_importAPI);
+        } else if (tb_importBC.isVisible()) {
+            mostrarCeldas(tb_importBC);
+        }
+    }//GEN-LAST:event_btn_mostrarActionPerformed
+
+    private void btn_ocultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ocultarActionPerformed
+        if (tb_importSF.isVisible()) {
+            ocultarCeldas(tb_importSF);
+        } else if (tb_importAPI.isVisible()) {
+            ocultarCeldas(tb_importAPI);
+        } else if (tb_importBC.isVisible()) {
+            ocultarCeldas(tb_importBC);
+        }
+    }//GEN-LAST:event_btn_ocultarActionPerformed
+
+    private void btn_siguientemodificadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_siguientemodificadoActionPerformed
+        siguienteModificada(tb_importSF.getSelectedRow() + 1);
+    }//GEN-LAST:event_btn_siguientemodificadoActionPerformed
+
+    private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
+        JOptionPane.showMessageDialog(rootPane, "Elige las columnas que se van a comparar entre las diferentes tablas.");
+    }//GEN-LAST:event_jLabel14MouseClicked
+
+    private void btDeshacerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeshacerActionPerformed
+        deshacer(tb_importSF);
+        btDeshacer.setEnabled(false);
+    }//GEN-LAST:event_btDeshacerActionPerformed
+
+    private void cb_sfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_sfActionPerformed
+        if (cb_sf.getSelectedItem() != null) {
+            btn_rellenar.setEnabled(true);
+        }
+    }//GEN-LAST:event_cb_sfActionPerformed
+
+    private void rbBCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbBCActionPerformed
+        cb_sf.setEnabled(true);
+        cb_bc.setEnabled(true);
+        cb_api.setEnabled(false);
+    }//GEN-LAST:event_rbBCActionPerformed
+
+    private void rbAPIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbAPIActionPerformed
+        cb_api.setEnabled(true);
+        cb_sf.setEnabled(true);
+        cb_bc.setEnabled(false);
+    }//GEN-LAST:event_rbAPIActionPerformed
+
+    private void btn_importSFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_importSFActionPerformed
+        if (importarExcel(tb_importSF)) {
+            btn_exportar.setEnabled(true);
             btn_BorrarFilas.setEnabled(true);
             btn_BorrarColumna.setEnabled(true);
-            cambiarVista(0);
+            //almacenarTabla();
+            cambiarVista(1);
         }
-    }//GEN-LAST:event_btn_importBCActionPerformed
+    }//GEN-LAST:event_btn_importSFActionPerformed
+
+    private void tb_importSFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_importSFMouseClicked
+        txt_dtTotal.setText(datosTotales(tb_importSF));
+    }//GEN-LAST:event_tb_importSFMouseClicked
+
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+        JOptionPane.showMessageDialog(rootPane, "Exporta la tabla de la vista a una hoja de Excel. Asegúrate de que no hay columnas vacías y de que no hay ninguna fila fuera de formato.\nRecuerda que solo se exportará la tabla de SF");
+    }//GEN-LAST:event_jLabel11MouseClicked
+
+    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
+        JOptionPane.showMessageDialog(rootPane, "Formatea la tabla.\nEl botón 'Borrar filas' te pide el número de filas que quieres borrar AL FINAL de la tabla.\nEl botón borrar columna te pide el NÚMERO DE COLUMNA que quieres borrar.");
+    }//GEN-LAST:event_jLabel9MouseClicked
+
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+        JOptionPane.showMessageDialog(rootPane, "Elige el archivo excel que quieres subir.\nCada botón corresponde a una plataforma diferente.");
+    }//GEN-LAST:event_jLabel10MouseClicked
+
+    private void btn_BorrarColumnaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BorrarColumnaActionPerformed
+        switch (vista) {
+            case 0:
+                borrarColumnas(tb_importAPI);
+                break;
+            case 1:
+                borrarColumnas(tb_importBC);
+                break;
+            case 2:
+                borrarColumnas(tb_importSF);
+            default:
+                break;
+        }
+    }//GEN-LAST:event_btn_BorrarColumnaActionPerformed
+
+    private void btn_BorrarFilasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BorrarFilasActionPerformed
+        switch (vista) {
+            case 0:
+                borrarFilas(tb_importAPI);
+                break;
+            case 1:
+                borrarFilas(tb_importBC);
+                break;
+            case 2:
+                borrarFilas(tb_importSF);
+            default:
+                break;
+        }
+    }//GEN-LAST:event_btn_BorrarFilasActionPerformed
+
+    private void tb_importAPIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_importAPIMouseClicked
+        txt_dtTotal.setText(datosTotales(tb_importAPI));
+    }//GEN-LAST:event_tb_importAPIMouseClicked
+
+    private void tb_importBCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_importBCMouseClicked
+        txt_dtTotal.setText(datosTotales(tb_importBC));
+    }//GEN-LAST:event_tb_importBCMouseClicked
+
+    private void btn_rellenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_rellenarActionPerformed
+        if (tb_importSF.getSelectedColumn() < 0 || tb_importSF.getSelectedColumn() > tb_importSF.getColumnCount()) {
+            JOptionPane.showMessageDialog(this, "Selecciona una columna pinchando en cualquiera de sus celdas");
+        } else {
+            rellenar();
+        }
+    }//GEN-LAST:event_btn_rellenarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        cambiarVista(vista);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btn_exportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exportarActionPerformed
         try {
@@ -472,153 +620,14 @@ public class ImpExcelBC extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_importApiActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        cambiarVista(vista);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void btn_rellenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_rellenarActionPerformed
-        if (tb_importSF.getSelectedColumn() < 0 || tb_importSF.getSelectedColumn() > tb_importSF.getColumnCount()) {
-            JOptionPane.showMessageDialog(this, "Selecciona una columna pinchando en cualquiera de sus celdas");
-        } else {
-            rellenar();
-        }
-    }//GEN-LAST:event_btn_rellenarActionPerformed
-
-    private void btn_BorrarFilasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BorrarFilasActionPerformed
-        switch (vista) {
-            case 0:
-                borrarFilas(tb_importAPI);
-                break;
-            case 1:
-                borrarFilas(tb_importBC);
-                break;
-            case 2:
-                borrarFilas(tb_importSF);
-            default:
-                break;
-        }
-    }//GEN-LAST:event_btn_BorrarFilasActionPerformed
-
-    private void btn_BorrarColumnaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BorrarColumnaActionPerformed
-        switch (vista) {
-            case 0:
-                borrarColumnas(tb_importAPI);
-                break;
-            case 1:
-                borrarColumnas(tb_importBC);
-                break;
-            case 2:
-                borrarColumnas(tb_importSF);
-            default:
-                break;
-        }
-    }//GEN-LAST:event_btn_BorrarColumnaActionPerformed
-
-    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
-        JOptionPane.showMessageDialog(rootPane, "Elige el archivo excel que quieres subir.\nCada botón corresponde a una plataforma diferente.");
-    }//GEN-LAST:event_jLabel10MouseClicked
-
-    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
-        JOptionPane.showMessageDialog(rootPane, "Formatea la tabla.\nEl botón 'Borrar filas' te pide el número de filas que quieres borrar AL FINAL de la tabla.\nEl botón borrar columna te pide el NÚMERO DE COLUMNA que quieres borrar.");
-    }//GEN-LAST:event_jLabel9MouseClicked
-
-    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
-        JOptionPane.showMessageDialog(rootPane, "Exporta la tabla de la vista a una hoja de Excel. Asegúrate de que no hay columnas vacías y de que no hay ninguna fila fuera de formato.\nRecuerda que solo se exportará la tabla de SF");
-    }//GEN-LAST:event_jLabel11MouseClicked
-
-    private void btn_importSFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_importSFActionPerformed
-        if (importarExcel(tb_importSF)) {
-            btn_exportar.setEnabled(true);
+    private void btn_importBCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_importBCActionPerformed
+        if (importarExcel(tb_importBC)) {
+            rbBC.setEnabled(true);
             btn_BorrarFilas.setEnabled(true);
             btn_BorrarColumna.setEnabled(true);
-            //almacenarTabla();
-            cambiarVista(1);
+            cambiarVista(0);
         }
-    }//GEN-LAST:event_btn_importSFActionPerformed
-
-    private void cb_sfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_sfActionPerformed
-        if (cb_sf.getSelectedItem() != null) {
-            btn_rellenar.setEnabled(true);
-        }
-    }//GEN-LAST:event_cb_sfActionPerformed
-
-    private void btDeshacerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeshacerActionPerformed
-        deshacer(tb_importSF);
-        btDeshacer.setEnabled(false);
-    }//GEN-LAST:event_btDeshacerActionPerformed
-
-    private void rbAPIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbAPIActionPerformed
-        cb_api.setEnabled(true);
-        cb_sf.setEnabled(true);
-        cb_bc.setEnabled(false);
-    }//GEN-LAST:event_rbAPIActionPerformed
-
-    private void rbBCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbBCActionPerformed
-        cb_sf.setEnabled(true);
-        cb_bc.setEnabled(true);
-        cb_api.setEnabled(false);
-    }//GEN-LAST:event_rbBCActionPerformed
-
-    private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
-        JOptionPane.showMessageDialog(rootPane, "Elige las columnas que se van a comparar entre las diferentes tablas.");
-    }//GEN-LAST:event_jLabel14MouseClicked
-
-    private void btn_siguientemodificadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_siguientemodificadoActionPerformed
-        siguienteModificada(tb_importSF.getSelectedRow() + 1);
-    }//GEN-LAST:event_btn_siguientemodificadoActionPerformed
-
-    private void btn_ocultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ocultarActionPerformed
-        if (tb_importSF.isVisible()) {
-            ocultarCeldas(tb_importSF);
-        } else if (tb_importAPI.isVisible()) {
-            ocultarCeldas(tb_importAPI);
-        } else if (tb_importBC.isVisible()) {
-            ocultarCeldas(tb_importBC);
-        }
-    }//GEN-LAST:event_btn_ocultarActionPerformed
-
-    private void btn_mostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_mostrarActionPerformed
-        if (tb_importSF.isVisible()) {
-            mostrarCeldas(tb_importSF);
-        } else if (tb_importAPI.isVisible()) {
-            mostrarCeldas(tb_importAPI);
-        } else if (tb_importBC.isVisible()) {
-            mostrarCeldas(tb_importBC);
-        }
-    }//GEN-LAST:event_btn_mostrarActionPerformed
-
-    private void tb_importSFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_importSFMouseClicked
-        txt_dtTotal.setText(datosTotales(tb_importSF));
-
-    }//GEN-LAST:event_tb_importSFMouseClicked
-
-    private void tb_importBCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_importBCMouseClicked
-        txt_dtTotal.setText(datosTotales(tb_importBC));
-
-    }//GEN-LAST:event_tb_importBCMouseClicked
-
-    private void tb_importAPIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_importAPIMouseClicked
-        txt_dtTotal.setText(datosTotales(tb_importAPI));
-
-    }//GEN-LAST:event_tb_importAPIMouseClicked
-
-    private void btn_siguientevacioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_siguientevacioActionPerformed
-        siguienteVacia(tb_importSF.getSelectedRow() + 1);
-    }//GEN-LAST:event_btn_siguientevacioActionPerformed
-
-    private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
-        if (tb_importAPI.isVisible()) {
-            buscador(tb_importAPI.getSelectedColumn(), tb_importAPI.getSelectedRow() + 1, tb_importAPI);
-        } else if (tb_importBC.isVisible()) {
-            buscador(tb_importBC.getSelectedColumn(), tb_importBC.getSelectedRow() + 1, tb_importBC);
-        } else if (tb_importSF.isVisible()) {
-            buscador(tb_importSF.getSelectedColumn(), tb_importSF.getSelectedRow() + 1, tb_importSF);
-        }
-    }//GEN-LAST:event_btn_buscarActionPerformed
-
-    private void btn_rellenarDCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_rellenarDCActionPerformed
-        rellenarDC();
-    }//GEN-LAST:event_btn_rellenarDCActionPerformed
+    }//GEN-LAST:event_btn_importBCActionPerformed
 
     /**
      * @param args the command line arguments
@@ -700,11 +709,10 @@ public class ImpExcelBC extends javax.swing.JFrame {
         return sn;
     }
 
-    private void headerMouseListener(JTable table) {
+    /*private void headerMouseListener(JTable table) {
         JTableHeader header = table.getTableHeader();
         header.addMouseListener(new TableHeaderMouseListener(table));
-    }
-
+    }*/
     private void mostrarCeldas(JTable t) {
         for (int i = 0; i < t.getRowCount(); i++) {
             String dato = String.valueOf(t.getValueAt(i, t.getSelectedColumn()));
@@ -764,54 +772,6 @@ public class ImpExcelBC extends javax.swing.JFrame {
         }
     }
 
-    /*private void getCeldas() {
-        DefaultTableModel model = new DefaultTableModel();
-        for (int i = 0; i < tb_importSF.getRowCount(); i++) {
-            model.removeRow(i);
-            i--;
-        }
-        Object[] object = new Object[tb_importSF.getColumnCount()];
-        for (int i = 0; i < conjuntoFilas.size(); i++) {
-            for (int j = 0; j < conjuntoFilas.get(i).size(); j++) {
-                String dato = String.valueOf(conjuntoFilas.get(i).get(j));
-                dato = dato.replaceAll("null", "");
-                object[j] = dato;
-            }
-            model.addRow(object);
-        }
-    }
-
-    private void outCeldas() {
-        int n = 0;
-        for (int i = 0; i < tb_importSF.getRowCount(); i++) {
-            String dato = String.valueOf(tb_importSF.getValueAt(i, tb_importSF.getSelectedColumn()));
-            if (dato.equals("")) {
-                n++;
-            }
-        }
-        if (JOptionPane.showConfirmDialog(this, n + " celdas vacías. ¿Deseas ocultarlas?", "Celdas vacías",
-                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-            for (int i = 0; i < tb_importSF.getRowCount(); i++) {
-                String dato = String.valueOf(tb_importSF.getValueAt(i, tb_importSF.getSelectedColumn()));
-                if (dato.equals("")) {
-                    ((javax.swing.table.DefaultTableModel) tb_importSF.getModel()).removeRow(i);
-                    i--;
-                }
-            }
-        }
-    }
-    
-    private void almacenarTabla() {
-        conjuntoFilas = new ArrayList<>();
-        for (int i = 0; i < tb_importSF.getRowCount(); i++) {
-            fila = new ArrayList<>();
-            for (int j = 0; j < tb_importSF.getColumnCount(); j++) {
-                String dato = String.valueOf(tb_importSF.getValueAt(i, j));
-                fila.add(dato);
-            }
-            conjuntoFilas.add(fila);
-        }
-    }*/
     private String sacarOpcion(JTable t) {
         JComboBox combo = new JComboBox();
         ArrayList<String> comboSort = new ArrayList<>();
@@ -951,143 +911,74 @@ public class ImpExcelBC extends javax.swing.JFrame {
         return nCambios;
     }
 
-    /*private int rellenarDC(JTable t, JComboBox cb) {
-        int nCambios = 0;
-        int fila = t.getRowCount();
-        int contadorSIGES = 0;
-        int contadorAPIGES = 0;
-        guardarCambiosdeDeshacer(t);
-        String datoSF = "0010900001AIJul";
-        for (int i = 0; i < fila; i++) {
-            String datoRef1 = String.valueOf(t.getValueAt(i, sacarColumnaRef1(t, cb)));
-            if (datoRef1.equalsIgnoreCase(datoSF)) {
-                contadorAPIGES++;
-            }
-        }
+    private void sustituirDC() {
+        ArrayList<String> filaporfila;
+        ArrayList<ArrayList> todaslasFilas = new ArrayList<>();
 
-        for (Map.Entry<String, String> entry : valores.entrySet()) {
-            if (entry.getKey().equalsIgnoreCase(datoSF)) {
-                contadorSIGES++;
-            }
-        }
-        if (contadorAPIGES >= contadorSIGES) {
-            //Quitar fila
-            DefaultTableModel model = (DefaultTableModel) tb_importSF.getModel();
-            int cont = contadorAPIGES;
-            for (int i = 0; i < fila; i++) {
-                if (cont != 0) {
-                    String sObject = String.valueOf(t.getValueAt(i, sacarColumnaRef1(t, cb)));
-                    if (sObject.equalsIgnoreCase(datoSF)) {
-                        model.removeRow(i);
-                        i--;
-                        cont--;
-                    }
-                }
-            }
-            int diferencia = contadorAPIGES - contadorSIGES;
-            if (diferencia >= 0) {
-                Object[] object = new Object[tb_importSF.getColumnCount()];
-                for (int i = 0; i < tb_importAPI.getRowCount(); i++) {
-                    String ns = String.valueOf(tb_importAPI.getValueAt(i, sacarColumnaRef(tb_importAPI, cb_api)));
-                    if (ns.equalsIgnoreCase(datoSF)) {
-                        for (int j = 0; j < tb_importAPI.getColumnCount(); j++) {
-                            String sObject = String.valueOf(tb_importAPI.getValueAt(i, j));
-                            sObject = sObject.replaceAll("null", "");
-                            object[j] = sObject;
-                        }
-                        diferencia--;
-                        model.addRow(object);
-                    }
-                }
-            }
-        } else if (contadorAPIGES < contadorSIGES) {
-            //Añadir fiña
-            DefaultTableModel model = (DefaultTableModel) tb_importSF.getModel();
-            int cont = contadorAPIGES;
-            for (int i = 0; i < fila; i++) {
-                if (cont != 0) {
-                    String sObject = String.valueOf(t.getValueAt(i, sacarColumnaRef1(t, cb)));
-                    if (sObject.equalsIgnoreCase(datoSF)) {
-                        model.removeRow(i);
-                        i--;
-                        cont--;
-                    }
-                }
-            }
-
-            int diferencia = contadorAPIGES - contadorSIGES;
-            if (diferencia != 0) {
-                Object[] object = new Object[tb_importSF.getColumnCount()];
-                for (int i = 0; i < tb_importAPI.getRowCount(); i++) {
-                    String ns = String.valueOf(tb_importAPI.getValueAt(i, sacarColumnaRef(tb_importAPI, cb_api)));
-                    if (ns.equalsIgnoreCase(datoSF)) {
-                        for (int j = 0; j < tb_importAPI.getColumnCount(); j++) {
-                            String sObject = String.valueOf(tb_importAPI.getValueAt(i, j));
-                            sObject = sObject.replaceAll("null", "");
-                            object[j] = sObject;
-                        }
-                        diferencia++;
-                        model.addRow(object);
-                    }
-                }
-            }
-        }
-        return nCambios;
-    }*/
-    private void rellenarDC(JTable t, JComboBox cb) {
-        ArrayList<ArrayList> listaArellenar = new ArrayList<>();
-        ArrayList<ArrayList> listaAPIGES = new ArrayList<>();
-        ArrayList<String> filaAPIGES;
-        ArrayList<ArrayList> listaSIGES = new ArrayList<>();
-        ArrayList<String> filaSiges;
-        for (int i = 0; i < tb_importAPI.getRowCount(); i++) {
-            filaSiges = new ArrayList<>();
-            for (int j = 0; j < tb_importAPI.getColumnCount(); j++) {
-                String valoresFilaObject = String.valueOf(tb_importAPI.getValueAt(i, j));
-                filaSiges.add(valoresFilaObject);
-            }
-            listaSIGES.add(filaSiges);
-        }
-        System.out.println("Lista de SIGES rellenada");
-
+        //Meter todos los datos de tabla APIGES al arrayList
         for (int i = 0; i < tb_importSF.getRowCount(); i++) {
-            filaAPIGES = new ArrayList<>();
+            filaporfila = new ArrayList<>();
             for (int j = 0; j < tb_importSF.getColumnCount(); j++) {
-                String valoresFilaObject = String.valueOf(tb_importSF.getValueAt(i, j));
-                filaAPIGES.add(valoresFilaObject);
+                String dato = String.valueOf(tb_importSF.getValueAt(i, j));
+                filaporfila.add(dato);
             }
-            listaAPIGES.add(filaAPIGES);
+            todaslasFilas.add(filaporfila);
         }
-
-        System.out.println("Lista de APIGES rellenada");
-
-        System.out.println("Mezclando... Esto puede tardar entre 4 y 6 minutos");
+        //Meter todos los datos de tabla SIGES al arrayList
+        for (int i = 0; i < tb_importAPI.getRowCount(); i++) {
+            filaporfila = new ArrayList<>();
+            for (int j = 0; j < tb_importAPI.getColumnCount(); j++) {
+                String dato = String.valueOf(tb_importAPI.getValueAt(i, j));
+                filaporfila.add(dato);
+            }
+            todaslasFilas.add(filaporfila);
+        }
+        //Una vez que esta todo en el ArrayList cogemos un sf id con orden de migracion APIGES
         int cont = 0;
-        for (int i = 0; i < listaAPIGES.size(); i++) {
-            String claveAPI = String.valueOf(listaAPIGES.get(i).get(sacarColumnaRef1(t, cb)));
-            for (int j = 0; j < listaSIGES.size(); j++) {
-                String claveSIG = String.valueOf(listaSIGES.get(j).get(sacarColumnaRef1(t, cb)));
-                if (claveAPI.equalsIgnoreCase(claveSIG)) {
-                    listaSIGES.get(j).set(3, listaAPIGES.get(i).get(3));
-                    listaArellenar.add(listaSIGES.get(j));
-                    listaSIGES.remove(j);
-                    j--;
+        for (int i = 0; i < todaslasFilas.size(); i++) {
+            String ordenmigracion = String.valueOf(todaslasFilas.get(i).get(6));
+            if (ordenmigracion.equalsIgnoreCase("APIGES")) {
+                String salesforceid1 = String.valueOf(todaslasFilas.get(i).get(7));
+                for (int j = i + 1; j < todaslasFilas.size(); j++) {
+                    ordenmigracion = String.valueOf(todaslasFilas.get(j).get(6));
+                    String outdirect = String.valueOf(todaslasFilas.get(j).get(9));
+                    if (ordenmigracion.equalsIgnoreCase("SIGES") && outdirect.equalsIgnoreCase("false")) {
+                        String salesforceid2 = String.valueOf(todaslasFilas.get(j).get(7));
+                        if (salesforceid1.equals(salesforceid2)) {
+                            todaslasFilas.get(j).set(3, todaslasFilas.get(i).get(3));
+                            todaslasFilas.remove(i);
+                            i--;
+                        }
+                    } else if (ordenmigracion.equalsIgnoreCase("SIGES") && outdirect.equalsIgnoreCase("true")) {
+                        todaslasFilas.get(j).set(3, todaslasFilas.get(i).get(3));
+                    }
                 }
             }
             cont++;
-            System.out.println("Fila " + cont + " de " + listaAPIGES.size());
+            System.out.println(cont);
         }
-        System.out.println("Borrando filas y añadiendolas de nuevo");
+        cont = 0;
+        for (int i = 0; i < todaslasFilas.size(); i++) {
+            String salesforceid1 = String.valueOf(todaslasFilas.get(i).get(7));
+            for (int j = i + 1; j < todaslasFilas.size(); j++) {
+                String ordenmigracion = String.valueOf(todaslasFilas.get(j).get(6));
+                String salesforceid2 = String.valueOf(todaslasFilas.get(j).get(7));
+                if (ordenmigracion.equalsIgnoreCase("SIGES") && salesforceid1.equals(salesforceid2)) {
+                    todaslasFilas.get(j).set(3, todaslasFilas.get(i).get(3));
+                }
+            }
+            cont++;
+            System.out.println(cont);
+        }
+
         DefaultTableModel model = (DefaultTableModel) tb_importSF.getModel();
         model.setRowCount(0);
-        for (int i = 0; i < listaArellenar.size(); i++) {
-            Object[] object = new Object[tb_importSF.getColumnCount()];
-            for (int j = 0; j < tb_importSF.getColumnCount(); j++) {
-                String valoresFilaObject = String.valueOf(listaArellenar.get(i).get(j));
-                valoresFilaObject = valoresFilaObject.replaceAll("null", "");
-                object[j] = valoresFilaObject;
+        for (int i = 0; i < todaslasFilas.size(); i++) {
+            Object[] fila = new Object[tb_importSF.getColumnCount()];
+            for (int j = 0; j < todaslasFilas.get(i).size(); j++) {
+                fila[j] = todaslasFilas.get(i).get(j);
             }
-            model.addRow(object);
+            model.addRow(fila);
         }
     }
 
@@ -1311,7 +1202,7 @@ public class ImpExcelBC extends javax.swing.JFrame {
                     txt_tablapreview.setText("");
                     btn_mostrar.setEnabled(true);
                     btn_ocultar.setEnabled(true);
-                    headerMouseListener(tb_importAPI);
+                    //headerMouseListener(tb_importAPI);
                 } else {
                     txt_nombretabla.setText("TABLA APIGES NO IMPORTADA");
                     tb_importSF.setVisible(false);
@@ -1334,7 +1225,7 @@ public class ImpExcelBC extends javax.swing.JFrame {
                     txt_tablapreview.setText("");
                     btn_mostrar.setEnabled(true);
                     btn_ocultar.setEnabled(true);
-                    headerMouseListener(tb_importBC);
+                    //headerMouseListener(tb_importBC);
                 } else {
                     txt_nombretabla.setText("TABLA BC NO IMPORTADA");
                     tb_importAPI.setVisible(false);
@@ -1357,7 +1248,7 @@ public class ImpExcelBC extends javax.swing.JFrame {
                     txt_tablapreview.setText("");
                     btn_mostrar.setEnabled(true);
                     btn_ocultar.setEnabled(true);
-                    headerMouseListener(tb_importSF);
+                    //headerMouseListener(tb_importSF);
                 } else {
                     txt_nombretabla.setText("TABLA SF NO IMPORTADA");
                     tb_importBC.setVisible(false);
@@ -1394,7 +1285,7 @@ public class ImpExcelBC extends javax.swing.JFrame {
     private void rellenarDC() {
         if (rbAPI.isSelected()) {
             tb_importAPI.setVisible(true);
-            rellenarDC(tb_importSF, cb_sf);
+            sustituirDC();
             tb_importAPI.setVisible(false);
             JOptionPane.showMessageDialog(this, "Se ha realizado con exitos.");
 
