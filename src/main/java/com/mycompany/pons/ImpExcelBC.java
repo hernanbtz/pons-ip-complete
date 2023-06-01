@@ -4,9 +4,9 @@
  */
 package com.mycompany.pons;
 
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Desktop;
+import java.awt.HeadlessException;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.io.*;
@@ -106,16 +106,6 @@ public class ImpExcelBC extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setSize(new java.awt.Dimension(1280, 720));
-        addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                formMouseClicked(evt);
-            }
-        });
-        addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentResized(java.awt.event.ComponentEvent evt) {
-                formComponentResized(evt);
-            }
-        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(220, 220, 255));
@@ -458,14 +448,6 @@ public class ImpExcelBC extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-
-    }//GEN-LAST:event_formMouseClicked
-
-    private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
-
-    }//GEN-LAST:event_formComponentResized
-
     private void btn_rellenarDCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_rellenarDCActionPerformed
         rellenarDC();
     }//GEN-LAST:event_btn_rellenarDCActionPerformed
@@ -733,29 +715,18 @@ public class ImpExcelBC extends javax.swing.JFrame {
 
                 }
             }
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ImpExcelBC.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ImpExcelBC.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ImpExcelBC.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ImpExcelBC.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
+        //</editor-fold>
+
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ImpExcelBC().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new ImpExcelBC().setVisible(true);
         });
     }
 
@@ -1072,7 +1043,7 @@ public class ImpExcelBC extends javax.swing.JFrame {
      */
     private void guardarCambiosdeDeshacer(JTable t) {
         prueba = new ArrayList<>();
-        String dato = "";
+        String dato;
         for (int i = 0; i < t.getRowCount(); i++) {
             dato = String.valueOf(t.getValueAt(i, t.getSelectedColumn()));
             prueba.add(dato);
@@ -1304,39 +1275,39 @@ public class ImpExcelBC extends javax.swing.JFrame {
                 }
                 archivoXLS.createNewFile();
                 Workbook libro = new HSSFWorkbook();
-                FileOutputStream archivo = new FileOutputStream(archivoXLS);
-                Sheet hoja = libro.createSheet("SalesForce_EXP");
-                hoja.setDisplayGridlines(false);
-                for (int f = 0; f < t.getRowCount(); f++) {
-                    Row fila = hoja.createRow(f);
-                    for (int c = 0; c < t.getColumnCount(); c++) {
-                        Cell celda = fila.createCell(c);
-                        if (f == 0) {
-                            celda.setCellValue(t.getColumnName(c));
+                try (FileOutputStream archivo = new FileOutputStream(archivoXLS)) {
+                    Sheet hoja = libro.createSheet("SalesForce_EXP");
+                    hoja.setDisplayGridlines(false);
+                    for (int f = 0; f < t.getRowCount(); f++) {
+                        Row fila = hoja.createRow(f);
+                        for (int c = 0; c < t.getColumnCount(); c++) {
+                            Cell celda = fila.createCell(c);
+                            if (f == 0) {
+                                celda.setCellValue(t.getColumnName(c));
+                            }
                         }
                     }
-                }
-                int filaInicio = 1;
-                for (int f = 0; f < t.getRowCount(); f++) {
-                    Row fila = hoja.createRow(filaInicio);
-                    filaInicio++;
-                    for (int c = 0; c < t.getColumnCount(); c++) {
-                        Cell celda = fila.createCell(c);
-                        String dato = String.valueOf(t.getValueAt(f, c));
-                        dato = dato.replaceAll("null", "");
-                        if (t.getValueAt(f, c) instanceof Double) {
-                            celda.setCellValue(Double.parseDouble(dato));
-                        } else if (t.getValueAt(f, c) instanceof Float) {
-                            celda.setCellValue(Float.parseFloat(dato));
-                        } else {
-                            celda.setCellValue(dato);
+                    int filaInicio = 1;
+                    for (int f = 0; f < t.getRowCount(); f++) {
+                        Row fila = hoja.createRow(filaInicio);
+                        filaInicio++;
+                        for (int c = 0; c < t.getColumnCount(); c++) {
+                            Cell celda = fila.createCell(c);
+                            String dato = String.valueOf(t.getValueAt(f, c));
+                            dato = dato.replaceAll("null", "");
+                            if (t.getValueAt(f, c) instanceof Double) {
+                                celda.setCellValue(Double.parseDouble(dato));
+                            } else if (t.getValueAt(f, c) instanceof Float) {
+                                celda.setCellValue(Float.parseFloat(dato));
+                            } else {
+                                celda.setCellValue(dato);
+                            }
                         }
                     }
+                    libro.write(archivo);
                 }
-                libro.write(archivo);
-                archivo.close();
                 Desktop.getDesktop().open(archivoXLS);
-            } catch (Exception e) {
+            } catch (IOException | NumberFormatException e) {
                 JOptionPane.showMessageDialog(this, "Ha ocurrido un error. \nIntentelo de nuevo");
             }
         }
@@ -1679,12 +1650,10 @@ public class ImpExcelBC extends javax.swing.JFrame {
                         fos.close();
                         Desktop.getDesktop().open(outputFile);
                     } catch (IOException e) {
-                        e.printStackTrace();
                     }
                 }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (HeadlessException e) {
         }
     }
 
