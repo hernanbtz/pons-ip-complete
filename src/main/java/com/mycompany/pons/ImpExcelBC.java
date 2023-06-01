@@ -4,6 +4,7 @@
  */
 package com.mycompany.pons;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Desktop;
 import java.awt.Point;
@@ -75,8 +76,6 @@ public class ImpExcelBC extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         btn_BorrarFilas = new javax.swing.JButton();
         btn_BorrarColumna = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -102,6 +101,7 @@ public class ImpExcelBC extends javax.swing.JFrame {
         txt_buscador = new javax.swing.JTextField();
         btn_buscar = new javax.swing.JButton();
         btn_rellenarDC = new javax.swing.JButton();
+        descargarPDF = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
@@ -118,11 +118,13 @@ public class ImpExcelBC extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.setBackground(new java.awt.Color(220, 220, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         jPanel1.setMinimumSize(new java.awt.Dimension(1280, 720));
         jPanel1.setPreferredSize(new java.awt.Dimension(1280, 720));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btn_importBC.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btn_importBC.setText("Importar Excel de BC");
         btn_importBC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,6 +133,7 @@ public class ImpExcelBC extends javax.swing.JFrame {
         });
         jPanel1.add(btn_importBC, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 680, -1, -1));
 
+        btn_importApi.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btn_importApi.setText("Importar Excel de Apiges");
         btn_importApi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,6 +142,7 @@ public class ImpExcelBC extends javax.swing.JFrame {
         });
         jPanel1.add(btn_importApi, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 680, -1, -1));
 
+        btn_exportar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btn_exportar.setText("Exportar");
         btn_exportar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,7 +167,7 @@ public class ImpExcelBC extends javax.swing.JFrame {
                 btn_rellenarActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_rellenar, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 120, 170, -1));
+        jPanel1.add(btn_rellenar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 170, -1));
 
         scroll_BC.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         scroll_BC.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -180,7 +184,7 @@ public class ImpExcelBC extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "", "", "", ""
             }
         ));
         tb_importBC.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -207,7 +211,7 @@ public class ImpExcelBC extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "", "", "", ""
             }
         ));
         tb_importAPI.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -220,16 +224,14 @@ public class ImpExcelBC extends javax.swing.JFrame {
         jPanel1.add(scroll_API, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 1260, 420));
 
         jLabel1.setText("Columna de referencia en BC");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 100, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 100, -1, -1));
 
         jLabel2.setText("Columna de referencia en Apiges");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 150, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 150, -1, -1));
 
-        cb_bc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(cb_bc, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 120, -1, -1));
+        jPanel1.add(cb_bc, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 120, 270, -1));
 
-        cb_api.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(cb_api, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 170, -1, -1));
+        jPanel1.add(cb_api, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 170, 270, -1));
 
         txt_nombretabla.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         txt_nombretabla.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -247,7 +249,7 @@ public class ImpExcelBC extends javax.swing.JFrame {
                 btn_BorrarFilasActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_BorrarFilas, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 150, 130, -1));
+        jPanel1.add(btn_BorrarFilas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 130, -1));
 
         btn_BorrarColumna.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btn_BorrarColumna.setText("Borrar columna");
@@ -256,13 +258,7 @@ public class ImpExcelBC extends javax.swing.JFrame {
                 btn_BorrarColumnaActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_BorrarColumna, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 180, 130, -1));
-
-        jLabel3.setText("Nº filas a borrar al final de la tabla");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 320, -1));
-
-        jLabel4.setText("Nº de la columna que quieres borrar");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
+        jPanel1.add(btn_BorrarColumna, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 130, -1));
 
         jLabel5.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel5.setText("IMPORTAR EXCEL");
@@ -282,11 +278,11 @@ public class ImpExcelBC extends javax.swing.JFrame {
                 jLabel9MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 20, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 20, -1));
 
         jLabel7.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel7.setText("FORMATO");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel8.setText("EXPORTAR EXCEL");
@@ -315,7 +311,7 @@ public class ImpExcelBC extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "", "", "", ""
             }
         ));
         tb_importSF.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -327,6 +323,7 @@ public class ImpExcelBC extends javax.swing.JFrame {
 
         jPanel1.add(scroll_SF, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 1260, 420));
 
+        btn_importSF.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btn_importSF.setText("Importar Excel de SF");
         btn_importSF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -335,6 +332,7 @@ public class ImpExcelBC extends javax.swing.JFrame {
         });
         jPanel1.add(btn_importSF, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 680, -1, -1));
 
+        rbAPI.setBackground(new java.awt.Color(220, 220, 255));
         buttonGroup1.add(rbAPI);
         rbAPI.setText("APIGES");
         rbAPI.addActionListener(new java.awt.event.ActionListener() {
@@ -342,8 +340,9 @@ public class ImpExcelBC extends javax.swing.JFrame {
                 rbAPIActionPerformed(evt);
             }
         });
-        jPanel1.add(rbAPI, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 180, -1, -1));
+        jPanel1.add(rbAPI, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 90, -1, -1));
 
+        rbBC.setBackground(new java.awt.Color(220, 220, 255));
         buttonGroup1.add(rbBC);
         rbBC.setText("Business Central");
         rbBC.addActionListener(new java.awt.event.ActionListener() {
@@ -351,18 +350,17 @@ public class ImpExcelBC extends javax.swing.JFrame {
                 rbBCActionPerformed(evt);
             }
         });
-        jPanel1.add(rbBC, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 160, -1, -1));
+        jPanel1.add(rbBC, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 70, -1, -1));
 
         jLabel12.setText("Columna de referencia en SF");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 50, -1, -1));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 50, -1, -1));
 
-        cb_sf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cb_sf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cb_sfActionPerformed(evt);
             }
         });
-        jPanel1.add(cb_sf, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 70, -1, -1));
+        jPanel1.add(cb_sf, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 70, 270, -1));
 
         btDeshacer.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btDeshacer.setText("Deshacer");
@@ -371,7 +369,7 @@ public class ImpExcelBC extends javax.swing.JFrame {
                 btDeshacerActionPerformed(evt);
             }
         });
-        jPanel1.add(btDeshacer, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, 130, -1));
+        jPanel1.add(btDeshacer, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 130, -1));
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/infoIcon.png"))); // NOI18N
         jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -379,17 +377,18 @@ public class ImpExcelBC extends javax.swing.JFrame {
                 jLabel14MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 30, 20, -1));
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 30, 20, -1));
 
         jLabel15.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel15.setText("DEPURACIÓN");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 30, -1, -1));
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 30, -1, -1));
 
         txt_tablapreview.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         txt_tablapreview.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txt_tablapreview.setText("(AQUÍ SE MOSTRARÁ LA TABLA)");
         jPanel1.add(txt_tablapreview, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 320, 860, 180));
 
+        btn_siguientemodificado.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btn_siguientemodificado.setText("SIGUIENTE REGISTRO MODIFICADO");
         btn_siguientemodificado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -405,7 +404,7 @@ public class ImpExcelBC extends javax.swing.JFrame {
                 btn_ocultarActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_ocultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 90, 170, -1));
+        jPanel1.add(btn_ocultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 170, 170, -1));
 
         btn_mostrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btn_mostrar.setText("MOSTRAR");
@@ -414,9 +413,10 @@ public class ImpExcelBC extends javax.swing.JFrame {
                 btn_mostrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_mostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 60, 170, -1));
+        jPanel1.add(btn_mostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 140, 170, -1));
         jPanel1.add(txt_dtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 650, 250, 20));
 
+        btn_siguientevacio.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btn_siguientevacio.setText("SIGUIENTE REGISTRO VACIO");
         btn_siguientevacio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -426,13 +426,14 @@ public class ImpExcelBC extends javax.swing.JFrame {
         jPanel1.add(btn_siguientevacio, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 640, 220, -1));
         jPanel1.add(txt_buscador, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 100, 210, 30));
 
+        btn_buscar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btn_buscar.setText("BUSCAR");
         btn_buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_buscarActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 70, -1, -1));
+        jPanel1.add(btn_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 70, -1, -1));
 
         btn_rellenarDC.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btn_rellenarDC.setText("SUSTITUIR DOMICILIOS CONTACTOS");
@@ -441,7 +442,16 @@ public class ImpExcelBC extends javax.swing.JFrame {
                 btn_rellenarDCActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_rellenarDC, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 310, -1));
+        jPanel1.add(btn_rellenarDC, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 310, -1));
+
+        descargarPDF.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        descargarPDF.setText("DESCARGAR PDF INSTRUCTIVO");
+        descargarPDF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                descargarPDFActionPerformed(evt);
+            }
+        });
+        jPanel1.add(descargarPDF, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 310, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -459,7 +469,15 @@ public class ImpExcelBC extends javax.swing.JFrame {
     private void btn_rellenarDCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_rellenarDCActionPerformed
         rellenarDC();
     }//GEN-LAST:event_btn_rellenarDCActionPerformed
-
+    /**
+     * Este método se ejecuta cuando se activa el evento de acción del botón
+     * "btn_buscar". Verifica qué tabla (tb_importAPI, tb_importBC o
+     * tb_importSF) está visible en ese momento y llama al método "buscador" con
+     * los parámetros correspondientes: - El índice de la columna seleccionada
+     * en la tabla. - El número de fila seleccionada más uno (para ajustar el
+     * índice base 0 de Java al índice base 1 de las filas visibles en la
+     * tabla). - La tabla correspondiente.
+     */
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
         if (tb_importAPI.isVisible()) {
             buscador(tb_importAPI.getSelectedColumn(), tb_importAPI.getSelectedRow() + 1, tb_importAPI);
@@ -473,7 +491,13 @@ public class ImpExcelBC extends javax.swing.JFrame {
     private void btn_siguientevacioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_siguientevacioActionPerformed
         siguienteVacia(tb_importSF.getSelectedRow() + 1);
     }//GEN-LAST:event_btn_siguientevacioActionPerformed
-
+    /**
+     * Este método se ejecuta cuando se activa el evento de acción del botón
+     * "btn_mostrar". Verifica qué tabla (tb_importSF, tb_importAPI o
+     * tb_importBC) está visible en ese momento y llama al método
+     * "mostrarCeldas" con la tabla correspondiente. El método "mostrarCeldas"
+     * se encarga de mostrar todas las celdas de la tabla en su totalidad.
+     */
     private void btn_mostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_mostrarActionPerformed
         if (tb_importSF.isVisible()) {
             mostrarCeldas(tb_importSF);
@@ -483,7 +507,13 @@ public class ImpExcelBC extends javax.swing.JFrame {
             mostrarCeldas(tb_importBC);
         }
     }//GEN-LAST:event_btn_mostrarActionPerformed
-
+    /**
+     * Este método se ejecuta cuando se activa el evento de acción del botón
+     * "btn_ocultar". Verifica qué tabla (tb_importSF, tb_importAPI o
+     * tb_importBC) está visible en ese momento y llama al método
+     * "ocultarCeldas" con la tabla correspondiente. El método "ocultarCeldas"
+     * se encarga de ocultar las celdas seleccionadas de la tabla.
+     */
     private void btn_ocultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ocultarActionPerformed
         if (tb_importSF.isVisible()) {
             ocultarCeldas(tb_importSF);
@@ -501,7 +531,12 @@ public class ImpExcelBC extends javax.swing.JFrame {
     private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
         JOptionPane.showMessageDialog(rootPane, "Elige las columnas que se van a comparar entre las diferentes tablas.");
     }//GEN-LAST:event_jLabel14MouseClicked
-
+    /**
+     * Este método se ejecuta cuando se activa el evento de acción del botón
+     * "btDeshacer". Deshace la acción realizada anteriormente en la tabla
+     * tb_importSF. Habilita o deshabilita el botón "btDeshacer" según sea
+     * necesario.
+     */
     private void btDeshacerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeshacerActionPerformed
         deshacer(tb_importSF);
         btDeshacer.setEnabled(false);
@@ -524,7 +559,14 @@ public class ImpExcelBC extends javax.swing.JFrame {
         cb_sf.setEnabled(true);
         cb_bc.setEnabled(false);
     }//GEN-LAST:event_rbAPIActionPerformed
-
+    /**
+     * Este método se ejecuta cuando se activa el evento de acción del botón
+     * "btn_importSF". Intenta importar los datos desde un archivo de Excel a la
+     * tabla "tb_importSF". Si la importación es exitosa, se habilitan los
+     * controles btn_exportar, btn_BorrarFilas y btn_BorrarColumna. Además, se
+     * llama al método cambiarVista(1) para cambiar la vista a la tabla
+     * "tb_importBC".
+     */
     private void btn_importSFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_importSFActionPerformed
         if (importarExcel(tb_importSF)) {
             btn_exportar.setEnabled(true);
@@ -550,7 +592,15 @@ public class ImpExcelBC extends javax.swing.JFrame {
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         JOptionPane.showMessageDialog(rootPane, "Elige el archivo excel que quieres subir.\nCada botón corresponde a una plataforma diferente.");
     }//GEN-LAST:event_jLabel10MouseClicked
-
+    /**
+     * Este método se ejecuta cuando se activa el evento de acción del botón
+     * "btn_BorrarColumna". Dependiendo del valor de la variable "vista", se
+     * ejecuta el método "borrarColumnas" en la tabla correspondiente. Los casos
+     * posibles de "vista" son: - 0: se llama a "borrarColumnas" en la tabla
+     * "tb_importAPI". - 1: se llama a "borrarColumnas" en la tabla
+     * "tb_importBC". - 2: se llama a "borrarColumnas" en la tabla
+     * "tb_importSF". No se realiza ninguna acción por defecto.
+     */
     private void btn_BorrarColumnaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BorrarColumnaActionPerformed
         switch (vista) {
             case 0:
@@ -565,7 +615,15 @@ public class ImpExcelBC extends javax.swing.JFrame {
                 break;
         }
     }//GEN-LAST:event_btn_BorrarColumnaActionPerformed
-
+    /**
+     * Este método se ejecuta cuando se activa el evento de acción del botón
+     * "btn_BorrarFilas". Dependiendo del valor de la variable "vista", se
+     * ejecuta el método "borrarFilas" en la tabla correspondiente. Los casos
+     * posibles de "vista" son: - 0: se llama a "borrarFilas" en la tabla
+     * "tb_importAPI". - 1: se llama a "borrarFilas" en la tabla "tb_importBC".
+     * - 2: se llama a "borrarFilas" en la tabla "tb_importSF". No se realiza
+     * ninguna acción por defecto.
+     */
     private void btn_BorrarFilasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BorrarFilasActionPerformed
         switch (vista) {
             case 0:
@@ -588,7 +646,14 @@ public class ImpExcelBC extends javax.swing.JFrame {
     private void tb_importBCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_importBCMouseClicked
         txt_dtTotal.setText(datosTotales(tb_importBC));
     }//GEN-LAST:event_tb_importBCMouseClicked
-
+    /**
+     * Este método se ejecuta cuando se activa el evento de acción del botón
+     * "btn_rellenar". Verifica si no se ha seleccionado ninguna columna en la
+     * tabla "tb_importSF" o si la columna seleccionada está fuera de rango. Si
+     * se cumple alguna de estas condiciones, se muestra un mensaje de
+     * advertencia. De lo contrario, se llama al método "rellenar" para realizar
+     * la acción correspondiente.
+     */
     private void btn_rellenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_rellenarActionPerformed
         if (tb_importSF.getSelectedColumn() < 0 || tb_importSF.getSelectedColumn() > tb_importSF.getColumnCount()) {
             JOptionPane.showMessageDialog(this, "Selecciona una columna pinchando en cualquiera de sus celdas");
@@ -600,7 +665,13 @@ public class ImpExcelBC extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         cambiarVista(vista);
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    /**
+     * Este método se ejecuta cuando se activa el evento de acción del botón
+     * "btn_exportar". Intenta exportar los datos de la tabla "tb_importSF" a un
+     * archivo de Excel. Si se produce alguna excepción de tipo IOException
+     * durante el proceso de exportación, se registra el error en el registro de
+     * errores.
+     */
     private void btn_exportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exportarActionPerformed
         try {
             exportarExcel(tb_importSF);
@@ -610,7 +681,13 @@ public class ImpExcelBC extends javax.swing.JFrame {
                     .getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btn_exportarActionPerformed
-
+    /**
+     * Este método se ejecuta cuando se activa el evento de acción del botón
+     * "btn_importApi". Intenta importar los datos desde un archivo de Excel a
+     * la tabla "tb_importAPI". Si la importación es exitosa, se habilitan los
+     * controles rbAPI, btn_BorrarFilas y btn_BorrarColumna. Además, se llama al
+     * método cambiarVista(2) para cambiar la vista a la tabla "tb_importSF".
+     */
     private void btn_importApiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_importApiActionPerformed
         if (importarExcel(tb_importAPI)) {
             rbAPI.setEnabled(true);
@@ -619,7 +696,13 @@ public class ImpExcelBC extends javax.swing.JFrame {
             cambiarVista(2);
         }
     }//GEN-LAST:event_btn_importApiActionPerformed
-
+    /**
+     * Este método se ejecuta cuando se activa el evento de acción del botón
+     * "btn_importBC". Intenta importar los datos desde un archivo de Excel a la
+     * tabla "tb_importBC". Si la importación es exitosa, se habilitan los
+     * controles rbBC, btn_BorrarFilas y btn_BorrarColumna. Además, se llama al
+     * método cambiarVista(0) para cambiar la vista a la tabla "tb_importAPI".
+     */
     private void btn_importBCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_importBCActionPerformed
         if (importarExcel(tb_importBC)) {
             rbBC.setEnabled(true);
@@ -628,6 +711,10 @@ public class ImpExcelBC extends javax.swing.JFrame {
             cambiarVista(0);
         }
     }//GEN-LAST:event_btn_importBCActionPerformed
+
+    private void descargarPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descargarPDFActionPerformed
+        descargarPDF();
+    }//GEN-LAST:event_descargarPDFActionPerformed
 
     /**
      * @param args the command line arguments
@@ -672,6 +759,17 @@ public class ImpExcelBC extends javax.swing.JFrame {
         });
     }
 
+    /**
+     * Este método se utiliza para buscar un dato específico en una tabla.
+     * Recibe como parámetros la columna y fila iniciales donde se iniciará la
+     * búsqueda, así como la tabla (JTable) en la que se realizará la búsqueda.
+     * El método obtiene el dato a buscar desde el campo de texto
+     * "txt_buscador". Luego, recorre las celdas de la tabla a partir de la
+     * columna y fila iniciales. Si encuentra una celda con el dato buscado,
+     * selecciona la fila y columna correspondiente, y realiza un desplazamiento
+     * de la vista de la tabla para que la celda buscada sea visible. Si no se
+     * encuentra el dato buscado, se muestra un mensaje de advertencia.
+     */
     private void buscador(int columna, int fila, JTable t) {
         try {
             String datoAbuscar = String.valueOf(txt_buscador.getText());
@@ -697,6 +795,15 @@ public class ImpExcelBC extends javax.swing.JFrame {
 
     }
 
+    /**
+     * Este método se utiliza para obtener el número de datos totales en una
+     * tabla. Recibe como parámetro la tabla (JTable) para la cual se desea
+     * obtener el número de datos totales. El método recorre las filas de la
+     * tabla y verifica si la altura de la fila es igual a 16. Si la altura es
+     * igual a 16, se considera que la fila contiene datos y se incrementa el
+     * contador. Al final, se retorna una cadena de texto que indica el número
+     * de datos totales.
+     */
     private String datosTotales(JTable t) {
         int n = 0;
         String sn = "Datos Totales: ";
@@ -709,10 +816,14 @@ public class ImpExcelBC extends javax.swing.JFrame {
         return sn;
     }
 
-    /*private void headerMouseListener(JTable table) {
-        JTableHeader header = table.getTableHeader();
-        header.addMouseListener(new TableHeaderMouseListener(table));
-    }*/
+    /**
+     * Este método se utiliza para mostrar las celdas ocultas en una columna
+     * específica de una tabla. Recibe como parámetro la tabla (JTable) en la
+     * que se van a mostrar las celdas. El método recorre todas las filas de la
+     * tabla y verifica si el valor de la celda en la columna seleccionada es
+     * una cadena vacía. Si es una cadena vacía, se ajusta la altura de la fila
+     * a 16 píxeles para mostrar la celda.
+     */
     private void mostrarCeldas(JTable t) {
         for (int i = 0; i < t.getRowCount(); i++) {
             String dato = String.valueOf(t.getValueAt(i, t.getSelectedColumn()));
@@ -722,6 +833,16 @@ public class ImpExcelBC extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Este método se utiliza para ocultar las celdas vacías en una columna
+     * específica de una tabla. Recibe como parámetro la tabla (JTable) en la
+     * que se van a ocultar las celdas. El método recorre todas las filas de la
+     * tabla y verifica si el valor de la celda en la columna seleccionada es
+     * una cadena vacía o nula. Si es así y la altura de la fila es mayor a 1
+     * (es decir, la celda no está previamente oculta), se ajusta la altura de
+     * la fila a 1 para ocultar la celda. Además, el método muestra un mensaje
+     * de diálogo indicando la cantidad de celdas vacías ocultas.
+     */
     private void ocultarCeldas(JTable t) {
         int celdas_vacias = 0;
         for (int i = 0; i < t.getRowCount(); i++) {
@@ -734,6 +855,20 @@ public class ImpExcelBC extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Hay " + celdas_vacias + " celdas vacías");
     }
 
+    /**
+     * Este método se utiliza para buscar la siguiente celda modificada en una
+     * tabla, a partir de una posición de fila específica. Recibe como parámetro
+     * el número de fila a partir del cual se realizará la búsqueda. El método
+     * recorre las filas de la tabla a partir de la posición especificada. Para
+     * cada fila, compara el valor de la celda en la columna seleccionada con el
+     * valor almacenado en la lista de prueba (prueba). Si los valores son
+     * diferentes, se selecciona la fila en la tabla, se obtiene la vista
+     * principal (viewport) y se calcula el rectángulo de la celda. Luego se
+     * ajusta la posición de la vista para que la celda sea visible en la
+     * ventana. Finalmente, se interrumpe el bucle. Si ocurre alguna excepción
+     * durante el proceso, se muestra un mensaje de diálogo indicando que se
+     * debe seleccionar la primera celda para comenzar la búsqueda.
+     */
     private void siguienteModificada(int n) {
         try {
             for (int i = n; i < tb_importSF.getRowCount(); i++) {
@@ -753,6 +888,20 @@ public class ImpExcelBC extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Este método se utiliza para buscar la siguiente celda vacía en una tabla,
+     * a partir de una posición de fila específica. Recibe como parámetro el
+     * número de fila a partir del cual se realizará la búsqueda. El método
+     * recorre las filas de la tabla a partir de la posición especificada. Para
+     * cada fila, compara el valor de la celda en la columna seleccionada con
+     * una cadena vacía. Si el valor es una cadena vacía, se selecciona la fila
+     * en la tabla, se obtiene la vista principal (viewport) y se calcula el
+     * rectángulo de la celda. Luego se ajusta la posición de la vista para que
+     * la celda sea visible en la ventana. Finalmente, se interrumpe el bucle.
+     * Si ocurre alguna excepción durante el proceso, se muestra un mensaje de
+     * diálogo indicando que se debe seleccionar la primera celda para comenzar
+     * la búsqueda.
+     */
     private void siguienteVacia(int n) {
         try {
             for (int i = n; i < tb_importSF.getRowCount(); i++) {
@@ -772,6 +921,20 @@ public class ImpExcelBC extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Este método se utiliza para mostrar un diálogo con un JComboBox que
+     * contiene las opciones de columnas de una tabla. Recibe como parámetro la
+     * tabla (JTable) de la cual se obtienen las opciones de columna. El método
+     * crea un JComboBox y una lista (comboSort) para almacenar las opciones de
+     * columna. Se recorre la lista de columnas de la tabla y se agrega a
+     * comboSort el encabezado de cada columna que no esté vacío. Se ordena la
+     * lista comboSort. Se agregan los elementos de comboSort al JComboBox. Se
+     * muestra un diálogo con el JComboBox y se espera a que el usuario
+     * seleccione una opción y cierre el diálogo. Si el diálogo se cierra con la
+     * opción "Aceptar" (0), se obtiene el valor seleccionado en el JComboBox y
+     * se devuelve como resultado. Si el diálogo se cierra con otra opción, se
+     * devuelve una cadena vacía.
+     */
     private String sacarOpcion(JTable t) {
         JComboBox combo = new JComboBox();
         ArrayList<String> comboSort = new ArrayList<>();
@@ -792,6 +955,18 @@ public class ImpExcelBC extends javax.swing.JFrame {
         return dato;
     }
 
+    /**
+     * Este método se utiliza para obtener el índice de la columna que contiene
+     * datos en una tabla. Recibe como parámetro la tabla (JTable) en la que se
+     * va a buscar la columna con datos. El método llama a la función
+     * sacarOpcion para obtener el nombre de la columna seleccionada como
+     * opción. Si el nombre de la columna no es una cadena vacía, se recorre la
+     * lista de columnas de la tabla y se busca la columna que tenga como
+     * encabezado el nombre de la opción. Si se encuentra la columna, se guarda
+     * el índice de la columna. Si no se encuentra la columna, se asigna -1 como
+     * índice de columna. Al finalizar, se retorna el índice de la columna con
+     * datos o -1 si no se encuentra.
+     */
     private int sacarColumnaConDatos(JTable t) {
         columnaDatos = sacarOpcion(t);
         int indiceColumna = 0;
@@ -810,6 +985,16 @@ public class ImpExcelBC extends javax.swing.JFrame {
         return indiceColumna;
     }
 
+    /**
+     * Este método se utiliza para obtener el índice de la columna de referencia
+     * en una tabla, según el valor seleccionado en un JComboBox. Recibe como
+     * parámetros la tabla (JTable) en la que se va a buscar la columna de
+     * referencia y el JComboBox que contiene los valores de referencia. El
+     * método recorre la lista de columnas de la tabla y compara el encabezado
+     * de cada columna con el valor seleccionado en el JComboBox. Si encuentra
+     * una coincidencia, guarda el índice de la columna. Al finalizar, retorna
+     * el índice de la columna de referencia.
+     */
     private int sacarColumnaRef(JTable t, JComboBox cb) {
         int indiceColumna = 0;
         if (t.isVisible()) {
@@ -822,6 +1007,20 @@ public class ImpExcelBC extends javax.swing.JFrame {
         return indiceColumna;
     }
 
+    /**
+     * Este método se utiliza para guardar los datos de una tabla en un HashMap.
+     * Recibe como parámetros la tabla (JTable) y un JComboBox que representa
+     * una referencia para los datos. El método verifica si hay una columna con
+     * datos en la tabla utilizando el método "sacarColumnaConDatos". Luego,
+     * obtiene la columna de referencia utilizando el método "sacarColumnaRef".
+     * Si se encuentra una columna con datos y se obtiene la columna de
+     * referencia, se crea un nuevo HashMap llamado "valores". A continuación,
+     * recorre todas las filas de la tabla y agrega los datos correspondientes a
+     * la columna de referencia y a la columna con datos al HashMap "valores".
+     * Si no se encuentra una columna con datos, se establece el valor de
+     * "esCorrecto" como falso. Al final, se devuelve el valor de "esCorrecto"
+     * para indicar si los datos se guardaron correctamente o no.
+     */
     private boolean guardarDatos(JTable t, JComboBox cb) {
         boolean esCorrecto = true;
         int fila = t.getRowCount();
@@ -838,6 +1037,16 @@ public class ImpExcelBC extends javax.swing.JFrame {
         return esCorrecto;
     }
 
+    /**
+     * Este método se utiliza para obtener el índice de la columna de referencia
+     * 1 en una tabla, según el valor seleccionado en un JComboBox. Recibe como
+     * parámetros la tabla (JTable) en la que se va a buscar la columna de
+     * referencia 1 y el JComboBox que contiene los valores de referencia. El
+     * método recorre la lista de columnas de la tabla y compara el encabezado
+     * de cada columna con el valor seleccionado en el JComboBox. Si encuentra
+     * una coincidencia, guarda el índice de la columna. Al finalizar, retorna
+     * el índice de la columna de referencia 1.
+     */
     private int sacarColumnaRef1(JTable t, JComboBox cb) {
         int indiceColumna = 0;
         if (t.isVisible()) {
@@ -850,6 +1059,17 @@ public class ImpExcelBC extends javax.swing.JFrame {
         return indiceColumna;
     }
 
+    /**
+     * Este método se utiliza para guardar los cambios realizados en la función
+     * de deshacer en una tabla. Recibe como parámetro la tabla (JTable) en la
+     * cual se realizaron los cambios. El método crea una nueva lista llamada
+     * "prueba" para almacenar los datos de la columna seleccionada. Luego,
+     * recorre todas las filas de la tabla y obtiene el dato de la columna
+     * seleccionada en cada fila. El dato se agrega a la lista "prueba". Por
+     * último, se habilitan los botones "btDeshacer" y
+     * "btn_siguientemodificado". Esto se realiza para permitir deshacer y
+     * avanzar a la siguiente modificación.
+     */
     private void guardarCambiosdeDeshacer(JTable t) {
         prueba = new ArrayList<>();
         String dato = "";
@@ -861,6 +1081,15 @@ public class ImpExcelBC extends javax.swing.JFrame {
         btn_siguientemodificado.setEnabled(true);
     }
 
+    /**
+     * Este método se utiliza para deshacer una acción en una tabla. Recibe como
+     * parámetro la tabla (JTable) en la cual se desea deshacer la acción. El
+     * método recorre todas las filas de la tabla y obtiene el dato
+     * correspondiente a través de la lista "prueba". Luego, reemplaza cualquier
+     * valor "null" en el dato y lo establece en la columna seleccionada de la
+     * fila correspondiente en la tabla. Esto se realiza para deshacer la
+     * modificación realizada previamente en la columna seleccionada.
+     */
     private void deshacer(JTable t) {
         for (int i = 0; i < t.getRowCount(); i++) {
             String dato = prueba.get(i);
@@ -869,6 +1098,23 @@ public class ImpExcelBC extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Este método se utiliza para rellenar las celdas vacías en una columna
+     * específica de una tabla, utilizando un JComboBox como referencia. Recibe
+     * como parámetros la tabla (JTable) en la que se van a rellenar las celdas
+     * y el JComboBox utilizado como referencia. El método recorre todas las
+     * filas de la tabla y verifica si la celda en la columna de referencia 1
+     * contiene un valor. Si el RadioButton "API" está seleccionado, se verifica
+     * si la celda en la columna seleccionada está vacía. Si cumple ambas
+     * condiciones, se obtiene el dato correspondiente al valor de referencia 1
+     * desde el mapa de valores. Luego se reemplazan las palabras "null" y
+     * "NULL" por una cadena vacía en el dato obtenido. Si el dato no es nulo ni
+     * una cadena vacía, se establece como valor de la celda en la columna
+     * seleccionada. Se cuenta el número de cambios realizados y se retorna. Si
+     * el RadioButton "API" no está seleccionado, se realiza un proceso similar
+     * sin verificar si la celda en la columna seleccionada está vacía. Al
+     * finalizar, se retorna el número de cambios realizados.
+     */
     private int rellenar(JTable t, JComboBox cb) {
         int nCambios = 0;
         int fila = t.getRowCount();
@@ -911,6 +1157,22 @@ public class ImpExcelBC extends javax.swing.JFrame {
         return nCambios;
     }
 
+    /**
+     * Este método se utiliza para sustituir los datos en la tabla "tb_importSF"
+     * según ciertas reglas. El método crea un ArrayList de ArrayLists para
+     * almacenar los datos de las filas de las tablas "tb_importSF" y
+     * "tb_importAPI". Luego, recorre el ArrayList y busca filas con orden de
+     * migración "APIGES". Para cada fila con orden de migración "APIGES", busca
+     * filas con orden de migración "SIGES" y el mismo Salesforce ID. Si
+     * encuentra coincidencias, actualiza el valor en la columna 3 de las filas
+     * "SIGES" con el valor de la columna 3 de la fila "APIGES". Luego, elimina
+     * la fila "APIGES" del ArrayList. Luego, recorre el ArrayList nuevamente y
+     * busca filas "SIGES" con el mismo Salesforce ID. Si encuentra
+     * coincidencias, actualiza el valor en la columna 3 de las filas "SIGES"
+     * con el valor de la columna 3 de la fila anterior con el mismo Salesforce
+     * ID. Finalmente, se actualiza el modelo de la tabla "tb_importSF" con los
+     * datos actualizados del ArrayList.
+     */
     private void sustituirDC() {
         ArrayList<String> filaporfila;
         ArrayList<ArrayList> todaslasFilas = new ArrayList<>();
@@ -982,6 +1244,17 @@ public class ImpExcelBC extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Este método se utiliza para rellenar los JComboBox con los nombres de las
+     * columnas de las tablas importadas. El método realiza las siguientes
+     * acciones: - Elimina todos los elementos existentes en los JComboBox
+     * cb_api, cb_bc y cb_sf. - Crea y ordena listas (cbBCsort, cbAPIsort y
+     * cbSFsort) con los nombres de las columnas de las tablas importBC,
+     * importAPI y importSF respectivamente. - Agrega los elementos de las
+     * listas ordenadas a los JComboBox correspondientes. - cb_bc se llena con
+     * los elementos de cbBCsort. - cb_api se llena con los elementos de
+     * cbAPIsort. - cb_sf se llena con los elementos de cbSFsort.
+     */
     private void rellenarCombos() {
         cb_api.removeAllItems();
         cb_bc.removeAllItems();
@@ -1158,6 +1431,13 @@ public class ImpExcelBC extends javax.swing.JFrame {
 
     }
 
+    /**
+     * Este método se utiliza para borrar las filas seleccionadas de una JTable.
+     * Recibe como parámetro la tabla (JTable) de la cual se desean eliminar las
+     * filas. Itera sobre los índices de las filas seleccionadas y las elimina
+     * una por una. Después de eliminar una fila, se decrementa el contador 'i'
+     * para ajustar el tamaño del arreglo de filas seleccionadas.
+     */
     private void borrarFilas(JTable t) {
         for (int i = 0; i < t.getSelectedRows().length; i++) {
             ((javax.swing.table.DefaultTableModel) t.getModel()).removeRow(t.getSelectedRows()[i]);
@@ -1165,6 +1445,13 @@ public class ImpExcelBC extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Este método se utiliza para eliminar las columnas vacías de una JTable.
+     * Recibe como parámetro la tabla (JTable) de la cual se desean eliminar las
+     * columnas. Itera sobre los índices de las columnas de la tabla. Si el
+     * encabezado de una columna está vacío, se elimina dicha columna de la
+     * tabla.
+     */
     private void borrarColumnasinit(JTable t) {
         for (int i = 0; i < t.getColumnCount(); i++) {
             if (t.getColumnModel().getColumn(i).getHeaderValue().equals("")) {
@@ -1173,6 +1460,14 @@ public class ImpExcelBC extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Este método se utiliza para borrar las columnas seleccionadas de una
+     * JTable. Recibe como parámetro la tabla (JTable) de la cual se desean
+     * eliminar las columnas. Itera sobre los índices de las columnas
+     * seleccionadas y las elimina una por una. Después de eliminar una columna,
+     * se decrementa el contador 'i' para ajustar el tamaño del arreglo de
+     * columnas seleccionadas.
+     */
     private void borrarColumnas(JTable t) {
         for (int i = 0; i < t.getSelectedColumns().length; i++) {
             t.removeColumn(t.getColumnModel().getColumn(t.getSelectedColumns()[i]));
@@ -1180,6 +1475,16 @@ public class ImpExcelBC extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Este método se utiliza para cambiar la vista de las tablas. Recibe como
+     * parámetro un número entero "n" que indica la vista deseada. El método
+     * actualiza el valor de la variable "vista" y luego utiliza un switch-case
+     * para realizar las acciones correspondientes. Dependiendo del valor de
+     * "vista", se muestra u oculta la tabla correspondiente, se actualizan los
+     * textos y se habilitan/deshabilitan los botones. Además, se realiza un
+     * cambio en el texto y acción del botón "jButton1" para cambiar a la vista
+     * de la tabla siguiente.
+     */
     private void cambiarVista(int n) {
         vista = n;
         vista++;
@@ -1294,6 +1599,16 @@ public class ImpExcelBC extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Este método se utiliza para iniciar la vista de la interfaz. Establece
+     * los valores iniciales de los elementos y componentes de la interfaz. -
+     * Establece la variable "vista" en -1 para indicar que no se ha
+     * seleccionado ninguna vista. - Deshabilita los botones y elementos que no
+     * deben estar activos inicialmente. - Oculta las tablas y los paneles
+     * correspondientes. - Limpia y deshabilita los JComboBox de API, BC y SF. -
+     * Deshabilita el botón de exportar y establece el texto vacío en el campo
+     * de nombre de tabla.
+     */
     private void iniciarVista() {
         vista = -1;
         btn_rellenar.setEnabled(false);
@@ -1324,6 +1639,55 @@ public class ImpExcelBC extends javax.swing.JFrame {
         txt_nombretabla.setText("");
     }
 
+    private void descargarPDF() {
+        try {
+            ClassLoader classLoader = getClass().getClassLoader();
+            String filePath = classLoader.getResource("files/nombredelpdf").getFile();
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Seleccionar ruta de descarga");
+            fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            int result = fileChooser.showSaveDialog(null);
+            if (result == JFileChooser.APPROVE_OPTION) {
+                File selectedDir = fileChooser.getSelectedFile();
+                FileInputStream fis;
+                try {
+                    fis = new FileInputStream(filePath);
+                } catch (FileNotFoundException e) {
+                    JOptionPane.showMessageDialog(this, "Archivo no encontrado");
+                    return;
+                }
+                File outputFile = new File(selectedDir, "insertUsuariosFormat.xlsx");
+                FileOutputStream fos;
+                try {
+                    fos = new FileOutputStream(outputFile);
+                } catch (FileNotFoundException e) {
+                    JOptionPane.showMessageDialog(this, "No se puede escribir en la ruta seleccionada");
+                    return;
+                }
+                byte[] buffer = new byte[4096];
+                int bytesRead;
+                try {
+                    while ((bytesRead = fis.read(buffer)) != -1) {
+                        fos.write(buffer, 0, bytesRead);
+                    }
+                    JOptionPane.showMessageDialog(this, "Descarga completada");
+                } catch (IOException e) {
+                    JOptionPane.showMessageDialog(this, "Error al leer/escribir el archivo");
+                } finally {
+                    try {
+                        fis.close();
+                        fos.close();
+                        Desktop.getDesktop().open(outputFile);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btDeshacer;
     private javax.swing.JButton btn_BorrarColumna;
@@ -1343,6 +1707,7 @@ public class ImpExcelBC extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cb_api;
     private javax.swing.JComboBox<String> cb_bc;
     private javax.swing.JComboBox<String> cb_sf;
+    private javax.swing.JButton descargarPDF;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1351,8 +1716,6 @@ public class ImpExcelBC extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
