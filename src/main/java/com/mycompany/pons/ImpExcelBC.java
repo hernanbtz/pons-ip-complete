@@ -28,7 +28,7 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 /**
  *
- * @author sergi
+ * @author Sergio Hernandez
  */
 public class ImpExcelBC extends javax.swing.JFrame {
 
@@ -148,7 +148,7 @@ public class ImpExcelBC extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 140, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 300, -1));
 
         btn_rellenar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btn_rellenar.setText("RELLENAR");
@@ -157,7 +157,7 @@ public class ImpExcelBC extends javax.swing.JFrame {
                 btn_rellenarActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_rellenar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 170, -1));
+        jPanel1.add(btn_rellenar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 70, 170, -1));
 
         scroll_BC.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         scroll_BC.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -214,19 +214,19 @@ public class ImpExcelBC extends javax.swing.JFrame {
         jPanel1.add(scroll_API, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 1260, 420));
 
         jLabel1.setText("Columna de referencia en BC");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 100, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 100, -1, -1));
 
         jLabel2.setText("Columna de referencia en Apiges");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 150, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 150, -1, -1));
 
-        jPanel1.add(cb_bc, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 120, 270, -1));
+        jPanel1.add(cb_bc, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 120, 270, -1));
 
-        jPanel1.add(cb_api, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 170, 270, -1));
+        jPanel1.add(cb_api, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 170, 270, -1));
 
         txt_nombretabla.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         txt_nombretabla.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txt_nombretabla.setText("NOMBRE DE LA TABLA");
-        jPanel1.add(txt_nombretabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 170, 330, 40));
+        jPanel1.add(txt_nombretabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 160, 330, 40));
 
         jLabel6.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         jLabel6.setText("COMPLETACIÓN DATOS PONS IP");
@@ -239,7 +239,7 @@ public class ImpExcelBC extends javax.swing.JFrame {
                 btn_BorrarFilasActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_BorrarFilas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 130, -1));
+        jPanel1.add(btn_BorrarFilas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 130, -1));
 
         btn_BorrarColumna.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btn_BorrarColumna.setText("Borrar columna");
@@ -248,7 +248,7 @@ public class ImpExcelBC extends javax.swing.JFrame {
                 btn_BorrarColumnaActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_BorrarColumna, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 130, -1));
+        jPanel1.add(btn_BorrarColumna, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 130, -1));
 
         jLabel5.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel5.setText("IMPORTAR EXCEL");
@@ -330,7 +330,7 @@ public class ImpExcelBC extends javax.swing.JFrame {
                 rbAPIActionPerformed(evt);
             }
         });
-        jPanel1.add(rbAPI, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 90, -1, -1));
+        jPanel1.add(rbAPI, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 40, -1, -1));
 
         rbBC.setBackground(new java.awt.Color(220, 220, 255));
         buttonGroup1.add(rbBC);
@@ -340,17 +340,17 @@ public class ImpExcelBC extends javax.swing.JFrame {
                 rbBCActionPerformed(evt);
             }
         });
-        jPanel1.add(rbBC, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 70, -1, -1));
+        jPanel1.add(rbBC, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 20, -1, -1));
 
         jLabel12.setText("Columna de referencia en SF");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 50, -1, -1));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 50, -1, -1));
 
         cb_sf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cb_sfActionPerformed(evt);
             }
         });
-        jPanel1.add(cb_sf, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 70, 270, -1));
+        jPanel1.add(cb_sf, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 70, 270, -1));
 
         btDeshacer.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btDeshacer.setText("Deshacer");
@@ -359,7 +359,7 @@ public class ImpExcelBC extends javax.swing.JFrame {
                 btDeshacerActionPerformed(evt);
             }
         });
-        jPanel1.add(btDeshacer, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 130, -1));
+        jPanel1.add(btDeshacer, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 130, -1));
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/infoIcon.png"))); // NOI18N
         jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -367,11 +367,11 @@ public class ImpExcelBC extends javax.swing.JFrame {
                 jLabel14MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 30, 20, -1));
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 30, 20, -1));
 
         jLabel15.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel15.setText("DEPURACIÓN");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 30, -1, -1));
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 30, -1, -1));
 
         txt_tablapreview.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         txt_tablapreview.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -394,7 +394,7 @@ public class ImpExcelBC extends javax.swing.JFrame {
                 btn_ocultarActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_ocultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 170, 170, -1));
+        jPanel1.add(btn_ocultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 110, 170, -1));
 
         btn_mostrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btn_mostrar.setText("MOSTRAR");
@@ -403,7 +403,7 @@ public class ImpExcelBC extends javax.swing.JFrame {
                 btn_mostrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_mostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 140, 170, -1));
+        jPanel1.add(btn_mostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 70, 170, -1));
         jPanel1.add(txt_dtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 650, 250, 20));
 
         btn_siguientevacio.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -414,7 +414,7 @@ public class ImpExcelBC extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btn_siguientevacio, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 640, 220, -1));
-        jPanel1.add(txt_buscador, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 100, 210, 30));
+        jPanel1.add(txt_buscador, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 210, 30));
 
         btn_buscar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btn_buscar.setText("BUSCAR");
@@ -423,16 +423,16 @@ public class ImpExcelBC extends javax.swing.JFrame {
                 btn_buscarActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 70, -1, -1));
+        jPanel1.add(btn_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, -1, -1));
 
         btn_rellenarDC.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btn_rellenarDC.setText("SUSTITUIR DOMICILIOS CONTACTOS");
+        btn_rellenarDC.setText("SUSTITUIR");
         btn_rellenarDC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_rellenarDCActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_rellenarDC, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 310, -1));
+        jPanel1.add(btn_rellenarDC, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 110, 170, -1));
 
         descargarPDF.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         descargarPDF.setText("DESCARGAR PDF INSTRUCTIVO");
@@ -1613,7 +1613,7 @@ public class ImpExcelBC extends javax.swing.JFrame {
     private void descargarPDF() {
         try {
             ClassLoader classLoader = getClass().getClassLoader();
-            String filePath = classLoader.getResource("files/nombredelpdf").getFile();
+            String filePath = classLoader.getResource("files/ManualPonsAPP.pdf").getFile();
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setDialogTitle("Seleccionar ruta de descarga");
             fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -1627,7 +1627,7 @@ public class ImpExcelBC extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Archivo no encontrado");
                     return;
                 }
-                File outputFile = new File(selectedDir, "insertUsuariosFormat.xlsx");
+                File outputFile = new File(selectedDir, "ManualPonsAPP.pdf");
                 FileOutputStream fos;
                 try {
                     fos = new FileOutputStream(outputFile);
