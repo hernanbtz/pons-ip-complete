@@ -105,6 +105,7 @@ public class ImpExcelBC extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
+        setResizable(false);
         setSize(new java.awt.Dimension(1280, 720));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -330,7 +331,7 @@ public class ImpExcelBC extends javax.swing.JFrame {
                 rbAPIActionPerformed(evt);
             }
         });
-        jPanel1.add(rbAPI, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 40, -1, -1));
+        jPanel1.add(rbAPI, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 40, -1, -1));
 
         rbBC.setBackground(new java.awt.Color(220, 220, 255));
         buttonGroup1.add(rbBC);
@@ -340,7 +341,7 @@ public class ImpExcelBC extends javax.swing.JFrame {
                 rbBCActionPerformed(evt);
             }
         });
-        jPanel1.add(rbBC, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 20, -1, -1));
+        jPanel1.add(rbBC, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 20, -1, -1));
 
         jLabel12.setText("Columna de referencia en SF");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 50, -1, -1));
