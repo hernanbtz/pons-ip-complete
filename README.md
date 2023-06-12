@@ -46,7 +46,7 @@ It was carried out during my internship stage (370 hours) at the company PONS IP
 
 ---
 
-## Built With
+### Built With
 <p>
   * <img alt="NetBeans" src="https://custom-icon-badges.demolab.com/badge/Apache%20NetBeans-green.svg?logo=netbeans&logoColor=white">
   <br>
