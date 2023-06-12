@@ -101,7 +101,6 @@ public class ImpExcelBC extends javax.swing.JFrame {
         txt_buscador = new javax.swing.JTextField();
         btn_buscar = new javax.swing.JButton();
         btn_rellenarDC = new javax.swing.JButton();
-        descargarPDF = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
@@ -435,15 +434,6 @@ public class ImpExcelBC extends javax.swing.JFrame {
         });
         jPanel1.add(btn_rellenarDC, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 110, 170, -1));
 
-        descargarPDF.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        descargarPDF.setText("DESCARGAR PDF INSTRUCTIVO");
-        descargarPDF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                descargarPDFActionPerformed(evt);
-            }
-        });
-        jPanel1.add(descargarPDF, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 310, -1));
-
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
@@ -694,10 +684,6 @@ public class ImpExcelBC extends javax.swing.JFrame {
             cambiarVista(0);
         }
     }//GEN-LAST:event_btn_importBCActionPerformed
-
-    private void descargarPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descargarPDFActionPerformed
-        descargarPDF();
-    }//GEN-LAST:event_descargarPDFActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1611,52 +1597,6 @@ public class ImpExcelBC extends javax.swing.JFrame {
         txt_nombretabla.setText("");
     }
 
-    private void descargarPDF() {
-        try {
-            ClassLoader classLoader = getClass().getClassLoader();
-            String filePath = classLoader.getResource("files/ManualPonsAPP.pdf").getFile();
-            JFileChooser fileChooser = new JFileChooser();
-            fileChooser.setDialogTitle("Seleccionar ruta de descarga");
-            fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-            int result = fileChooser.showSaveDialog(null);
-            if (result == JFileChooser.APPROVE_OPTION) {
-                File selectedDir = fileChooser.getSelectedFile();
-                FileInputStream fis;
-                try {
-                    fis = new FileInputStream(filePath);
-                } catch (FileNotFoundException e) {
-                    JOptionPane.showMessageDialog(this, "Archivo no encontrado");
-                    return;
-                }
-                File outputFile = new File(selectedDir, "ManualPonsAPP.pdf");
-                FileOutputStream fos;
-                try {
-                    fos = new FileOutputStream(outputFile);
-                } catch (FileNotFoundException e) {
-                    JOptionPane.showMessageDialog(this, "No se puede escribir en la ruta seleccionada");
-                    return;
-                }
-                byte[] buffer = new byte[4096];
-                int bytesRead;
-                try {
-                    while ((bytesRead = fis.read(buffer)) != -1) {
-                        fos.write(buffer, 0, bytesRead);
-                    }
-                    JOptionPane.showMessageDialog(this, "Descarga completada");
-                } catch (IOException e) {
-                    JOptionPane.showMessageDialog(this, "Error al leer/escribir el archivo");
-                } finally {
-                    try {
-                        fis.close();
-                        fos.close();
-                        Desktop.getDesktop().open(outputFile);
-                    } catch (IOException e) {
-                    }
-                }
-            }
-        } catch (HeadlessException e) {
-        }
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btDeshacer;
@@ -1677,7 +1617,6 @@ public class ImpExcelBC extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cb_api;
     private javax.swing.JComboBox<String> cb_bc;
     private javax.swing.JComboBox<String> cb_sf;
-    private javax.swing.JButton descargarPDF;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
