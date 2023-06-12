@@ -90,13 +90,12 @@ All the steps are in Spanish, you can translate little by little if you don't un
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+Sergio Hernández - sergiopozanco.com
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Project Link: <a href="https://github.com/hernanbtz/pons-ip-complete">View Project</a>
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
 
