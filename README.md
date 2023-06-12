@@ -27,30 +27,64 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
+
+---
 
 ## About The Project
 
  <p>
-    <img src="https://github.com/hernanbtz/pons-ip-complete/blob/master/src/main/resources/img/ppal.jpg?raw=true" alt="MainScreen" width="80" height="80">
+    <img src="https://github.com/hernanbtz/pons-ip-complete/blob/master/src/main/resources/img/ppal.png?raw=true" alt="MainScreen">
  </p>
 
-There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
+This application deals with completion of Excels. Mainly, replacing and improving the VLOOKUP function.
 
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should implement DRY principles to the rest of your life :smile:
+It was carried out during my internship stage (370 hours) at the company PONS IP.
 
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
+---
 
-Use the `BLANK_README.md` to get started.
+## Built With
+<p>
+  * <img alt="NetBeans" src="https://custom-icon-badges.demolab.com/badge/Apache%20NetBeans-green.svg?logo=netbeans&logoColor=white">
+  <br>
+  * <img alt="Java" src="https://custom-icon-badges.demolab.com/badge/Java-007396.svg?logo=java&logoColor=white">
+  * <img alt="Maven" src="https://custom-icon-badges.demolab.com/badge/Maven-grey.svg?logo=&logoColor=white">
+  <br>
+  * <img alt="POI" src="https://custom-icon-badges.demolab.com/badge/POI-orange.svg?logo=&logoColor=white">
+</p>
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+## Getting Started
+
+This is a brief example of how you could run the application. 
+Please, if you have any questions, do not hesitate to contact me.
+
+### Prerequisites
+
+There is only one requirement. Have Java and Maven installed.
+
+### Installation
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/hernanbtz/pons-ip-complete.git
+   ```
+2. Convert the file to .jar
+   ```sh
+   cd yourdir
+   ```
+   ```sh
+   mvn clean compile assembly:single
+   ```
+3. If you want to convert the .jar to .exe install Launch4j
+
+## Usage
+
+All the steps are in Spanish, you can translate little by little if you don't understand it.
+
+
+
+
 
