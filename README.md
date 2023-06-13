@@ -92,7 +92,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 ## Contact
 
-Sergio Hernández - sergiopozanco.com
+Sergio Hernández - sergiopozanco@gmail.com
 
 Project Link: <a href="https://github.com/hernanbtz/pons-ip-complete">View Project</a>
 
